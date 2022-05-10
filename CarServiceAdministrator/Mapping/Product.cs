@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceAdministrator.Mapping
 {
+    [Class]
     public class Product
     {
         [Id(0, Name = "ID")]

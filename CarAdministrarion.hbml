@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping default-cascade="save-update" p1:Guid="73f61f70-55c4-437c-b2fc-cd1e6cbd432e" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Login" table="Login" schema="dbo" p1:Guid="38eca2c8-eebd-4a9f-b121-05bff6692442">
+    <id name="ID" type="Int32" p1:ValidateRequired="true" p1:Guid="11eaeb0a-193f-41fe-b87a-4add6bb4733c">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="UserName" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="683f3a44-055b-4481-95bd-b5c51bb79d17">
+      <column name="UserName" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <property name="Password" type="String" p1:nullable="true" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="d29c76b9-6045-4bf6-91d6-f6d9c24685b0">
+      <column name="Password" not-null="false" length="50" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <many-to-one name="Role" class="Role" p1:AssociationGuid="6bb554e9-6d2f-4f30-b922-314bc7c6eae5" p1:Guid="8f6c52e5-e6f7-49bd-a08a-761c26105042">
+      <column name="RoleID" not-null="false" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <one-to-one name="User" class="User" p1:AssociationGuid="14ac7467-263a-4be1-ba6e-280707680dc2" p1:Guid="7ccb5088-7f4a-4636-a8ac-e54e8c73a52f" />
+  </class>
+  <class name="Product" table="Product" schema="dbo" p1:Guid="80e127f3-10fd-4403-99f0-3bc3d73140ae">
+    <id name="ID" type="Int32" p1:ValidateRequired="true" p1:Guid="f48064d5-9c85-405f-a2fa-72eda28ac29f">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="ProductNo" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="3533b9f6-75ec-44ee-bfaf-1cef1595ae18">
+      <column name="ProductNo" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="false" p1:Guid="c17dd3fb-548e-4272-9175-24d962e9e833">
+      <column name="Quantity" not-null="false" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="Description" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="b49aa261-716f-4269-b498-9dfb9a91720f">
+      <column name="Description" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+  </class>
+  <class name="Role" table="Role" schema="dbo" p1:Guid="4f09750a-412e-46a2-a77f-8d7a7c9f2d44">
+    <id name="ID" type="Int32" p1:ValidateRequired="true" p1:Guid="d62aadd0-440b-4a9d-b9e1-c6d9a9dc02de">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Role1" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="fc8d3a45-ebbe-459e-bd2f-75e792effc61">
+      <column name="Role" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <set name="Logins" inverse="true" generic="true" p1:AssociationGuid="6bb554e9-6d2f-4f30-b922-314bc7c6eae5" p1:Guid="7d57afca-c17b-49d2-9429-da9b5b40759b">
+      <key>
+        <column name="RoleID" />
+      </key>
+      <one-to-many class="Login" />
+    </set>
+  </class>
+  <class name="User" table="Users" schema="dbo" p1:Guid="68d970e7-ed57-4468-8478-3a6e06ba6220">
+    <id name="ID" type="Int32" p1:ValidateRequired="true" p1:Guid="2a4d2d9f-c87b-4bd5-9d49-47168b4f354d">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="FirstName" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="10e9cec9-365d-4365-84ba-9fde38698e93">
+      <column name="FirstName" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <property name="LastName" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="4aa81ae3-e668-40ec-8f06-ef5701d65d5f">
+      <column name="LastName" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <property name="Email" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="b34d1a0a-95cb-4176-a950-a6488bacef94">
+      <column name="Email" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <property name="Phone" type="String" p1:nullable="true" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="bd6493d9-a191-47ed-a7a3-b4cb56b4710c">
+      <column name="Phone" not-null="false" length="100" sql-type="varchar" p1:unicode="false" />
+    </property>
+    <property name="LoginID" type="Int32" p1:nullable="true" p1:ValidateRequired="false" p1:Guid="fc8445ed-bb21-4826-a4cb-f301d9fe1c9e">
+      <column name="LoginID" not-null="false" precision="10" scale="0" sql-type="int" unique="true" p1:unicode="false" />
+    </property>
+    <one-to-one name="Login" class="Login" constrained="true" p1:AssociationGuid="14ac7467-263a-4be1-ba6e-280707680dc2" p1:Guid="12a8a745-53a6-4124-bd57-c3462ef64954" />
+  </class>
+</hibernate-mapping>

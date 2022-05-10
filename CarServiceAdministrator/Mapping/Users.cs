@@ -10,8 +10,6 @@ namespace CarServiceAdministrator.Mapping
     [Class]
     public class Users
     {
-        Login _Login;
-
         [Id(0, Name = "ID")]
         [Generator(1, Class = "native")]
         public virtual int ID { get; set; }
@@ -25,8 +23,6 @@ namespace CarServiceAdministrator.Mapping
         public virtual string Phone { get; set; }
         [Property]
         public virtual int LoginID { get; set; }
-        //[OneToOne(Name = "Login", ClassType = typeof(Login), Constrained = true, Cascade = "All")]
-        //public virtual Login Login { get { return _Login ?? (_Login = new Login()); } set { _Login = value; } }
 
     }
 }

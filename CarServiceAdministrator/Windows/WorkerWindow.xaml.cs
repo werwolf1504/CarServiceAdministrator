@@ -24,7 +24,9 @@ namespace CarServiceAdministrator.Windows
     {
         Login login;
         Users users;
+        Product currentProduct;
         List<Users> usersList;
+        List<Product> productsList;
 
         public WorkerWindow(Login login)
         {
@@ -38,8 +40,17 @@ namespace CarServiceAdministrator.Windows
 
                 if (usersList.Count == 0)
                     MessageBox.Show("Do not found any logins");
-                UserDataGrid.ItemsSource = usersList;
+
+                query = "select * from Product";
+                productsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Product))).List<Product>().ToList();
+
+                //if (usersList.Count == 0)
+                //    MessageBox.Show("Do not found any Product");
+
+
                 Users currentUser = usersList.First(x=>x.LoginID == login.ID);
+                UserDataGrid.ItemsSource = usersList.Where(x => x.ID != currentUser.ID);
+                ProductDataGrid.ItemsSource = productsList;
                 NameTextBlock.Text = currentUser.FirstName;
                 LastNameTextBlock.Text = currentUser.LastName;
                 EmailTextBlock.Text = currentUser.Email;
@@ -88,9 +99,6 @@ namespace CarServiceAdministrator.Windows
         {
             using (var session = NHibernateSessionFactory.OpenSession())
             {
-                //string query = "select * from Users u join Login l on u.LoginID = l.ID where l.RoleID = 2";
-                //usersList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Users))).List<Users>().ToList();
-
                 if (users != null)
                 {
                     var deleteUser = session.Get<Users>(users.ID);
@@ -103,9 +111,55 @@ namespace CarServiceAdministrator.Windows
                         MessageBox.Show("Do not found any logins");
                     UserDataGrid.ItemsSource = usersList;
                 }
-                //if (usersList.Count == 0)
-                //    MessageBox.Show("Do not found any logins");
-                //UserDataGrid.ItemsSource = usersList;
+            }
+        }
+
+        private void RefreshProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            productsList = new List<Product>();
+            using (var session = NHibernateSessionFactory.OpenSession())
+            {
+                string query = "select * from Product";
+                productsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Product))).List<Product>().ToList();
+                ProductDataGrid.ItemsSource = productsList;
+            }
+        }
+
+        private void AddProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var session = NHibernateSessionFactory.OpenSession())
+            {
+                Product product = new Product();
+                product.ProductNo = PartNumberTextBlock.Text;
+                product.Quantity = int.Parse(QuantityTextBlock.Text);
+                product.Description = DescriptionTextBlock.Text;
+
+                session.Save(product);
+                string query = "select * from Product";
+                productsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Product))).List<Product>().ToList();
+                ProductDataGrid.ItemsSource = productsList;
+            }
+        }
+
+        private void ProductDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentProduct = ProductDataGrid.SelectedItem as Product;
+        }
+
+        private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var session = NHibernateSessionFactory.OpenSession())
+            {
+                if (currentProduct != null)
+                {
+                    var deleteProduct = session.Get<Product>(currentProduct.ID);
+                    session.Delete(deleteProduct);
+                    session.Flush();
+
+                    string query = "select * from Product";
+                    productsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Product))).List<Product>().ToList();
+                    ProductDataGrid.ItemsSource = productsList;
+                }
             }
         }
     }
