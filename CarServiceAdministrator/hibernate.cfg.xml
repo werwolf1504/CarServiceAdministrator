@@ -11,6 +11,6 @@
       <property name="adonet.batch_size">200</property>
       <property name="command_timeout">120</property>
       <property name='current_session_context_class'>thread_static</property>
-    <mapping assembly="CarServiceAdministrator.Mapping"/>
+    <mapping assembly="CarServiceAdministrator"/>
   </session-factory>
 </hibernate-configuration>

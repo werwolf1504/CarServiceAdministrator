@@ -1,4 +1,5 @@
-﻿using CarServiceAdministrator.Mapping;
+﻿
+using CarServiceAdministrator.Mapping;
 using CarServiceAdministrator.Windows;
 using NHB;
 using NHibernate;

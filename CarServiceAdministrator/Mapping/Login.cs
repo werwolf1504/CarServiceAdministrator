@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 
 
 namespace CarServiceAdministrator.Mapping
 {
@@ -16,6 +17,7 @@ namespace CarServiceAdministrator.Mapping
         public string UserName { get; set; }
         public string Password { get; set; }
         public int RoleID { get; set; }
-
     }
+
+    public class LoginMap : ClassMapping<>
 }
