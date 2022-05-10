@@ -18,30 +18,65 @@
                         <RowDefinition Height="608"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition ></ColumnDefinition>
-                        <ColumnDefinition ></ColumnDefinition>
-                        <ColumnDefinition ></ColumnDefinition>
-                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition Width="56*" ></ColumnDefinition>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="185*"/>
+                        <ColumnDefinition Width="255*" ></ColumnDefinition>
+                        <ColumnDefinition Width="255*" ></ColumnDefinition>
+                        <ColumnDefinition Width="255*" ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Name</Label>
-                    <TextBlock Grid.Row="0" Grid.Column="1" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                    <Label Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Last Name</Label>
-                    <TextBlock Grid.Row="0" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                    <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Phone Number</Label>
-                    <TextBlock Grid.Row="1" Grid.Column="1" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                    <Label Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Email</Label>
-                    <TextBlock Grid.Row="1" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                    <Label Grid.Row="2" Grid.ColumnSpan="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">As admin you can add or delete accounts for your workers</Label>
-                    <Button Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="Button_Click">Log out</Button>
-                    <Button x:Name="RefreshButton" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="RefreshButton_Click">Refresh</Button>
-                    <Button x:Name="AddUserButton" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="AddUserButton_Click">Add Worker</Button>
-                    <Button x:Name="DeleteUserButton" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220">Delete Worker</Button>
-                    <DataGrid x:Name="UserDataGrid" Grid.Row="4" Grid.ColumnSpan="4" IsReadOnly="False" ItemsSource="{Binding Path=usersList}" SelectionMode="Single" FontSize="16" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" Margin="0,0,0,48">
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="3" Margin="0,0,1,0">Name</Label>
+                    <TextBlock x:Name="NameTextBlock" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="2" Margin="0,0,254,0">Last Name</Label>
+                    <TextBlock x:Name="LastNameTextBlock" Grid.Column="5" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="3" Margin="0,0,1,0">Phone Number</Label>
+                    <TextBlock x:Name="PhoneTextBlock" Grid.Row="1" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    <Label Grid.Row="1" Grid.Column="4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="2" Margin="0,0,254,0">Email</Label>
+                    <TextBlock x:Name="EmailTextBlock" Grid.Row="1" Grid.Column="5" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    <Label Grid.Row="2" Grid.ColumnSpan="6" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Margin="0,0,254,0">As admin you can add or delete accounts for your workers</Label>
+                    <Button Grid.Row="2" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="Button_Click">Log out</Button>
+                    <Button x:Name="RefreshButton" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="RefreshButton_Click" Grid.ColumnSpan="3" Margin="17,0,0,0">Refresh</Button>
+                    <Button x:Name="AddUserButton" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="AddUserButton_Click">Add Worker</Button>
+                    <Button x:Name="DeleteUserButton" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="DeleteUserButton_Click">Delete Worker</Button>
+                    <DataGrid x:Name="UserDataGrid" Grid.Row="4" Grid.ColumnSpan="6" IsReadOnly="False" ItemsSource="{Binding Path=usersList}" SelectionMode="Single" FontSize="16" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" Margin="0,0,0,48" SelectionChanged="UserDataGrid_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Path= FirstName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="LastName" Binding="{Binding Path= LastName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Phone" Binding="{Binding Path= Phone}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Email" Binding="{Binding Path= Email}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Parts" Height="20" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="204*"/>
+                        <ColumnDefinition Width="255*"></ColumnDefinition>
+                        <ColumnDefinition Width="255*"></ColumnDefinition>
+                        <ColumnDefinition Width="255*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="2">Part Number</Label>
+                    <TextBox x:Name="PartNumberTextBlock" Grid.Column="2" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+                    <Label Grid.Row="0" Grid.Column="3" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="2" Margin="0,0,254,0">Quantity</Label>
+                    <TextBox x:Name="QuantityTextBlock" Grid.Column="4" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Grid.ColumnSpan="2">Description</Label>
+                    <TextBox x:Name="DescriptionTextBlock" Grid.Row="1" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="700"/>
+                    <Button x:Name="RefreshProductsButton" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="RefreshButton_Click" Grid.ColumnSpan="2" Margin="17,0,0,0">Refresh</Button>
+                    <Button x:Name="AddProductsButton" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="RefreshButton_Click">Add Product</Button>
+                    <Button x:Name="DeleteProductsButton" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="RefreshButton_Click">Delete Product</Button>
+                    <DataGrid x:Name="ProductDataGrid" Grid.Row="3" Grid.ColumnSpan="5" IsReadOnly="False" ItemsSource="{Binding Path=productList}" SelectionMode="Single" FontSize="16" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" Margin="0,0,0,48" SelectionChanged="UserDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ProductNo" Binding="{Binding Path= ProductNo}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Path= Quantity}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Path= Description}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

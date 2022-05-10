@@ -51,6 +51,7 @@ namespace CarServiceAdministrator.Windows
                 Users userNew = new Users() { LoginID = login.ID, FirstName = FirstNameTextBox.Text, LastName = LastNameTextBox.Text, Email = EmailTextBox.Text, Phone = PhoneTextBox.Text };
                 session.Save(userNew);
 
+                Close();
                 //if (usersList.Count == 0)
                 //    MessageBox.Show("Do not found any logins");
                 //UserDataGrid.ItemsSource = usersList;
