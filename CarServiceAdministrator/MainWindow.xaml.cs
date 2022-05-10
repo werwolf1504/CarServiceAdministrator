@@ -4,6 +4,9 @@ using CarServiceAdministrator.Windows;
 using NHB;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Cfg.MappingSchema;
+using NHibernate.Mapping.Attributes;
+using NHibernate.Mapping.ByCode;
 using NHibernate.Transform;
 using System;
 using System.Collections;
@@ -87,6 +90,11 @@ namespace NHB
                     Configuration configuration = new Configuration();
                     string path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "hibernate.cfg.xml");
                     configuration.Configure(path);
+                    HbmSerializer.Default.Validate = true;
+                    var loginStream = HbmSerializer.Default.Serialize(Assembly.GetEntryAssembly());
+                    configuration.AddInputStream(loginStream);
+                    //var userStream = HbmSerializer.Default.Serialize(Assembly.GetAssembly(typeof(Users)));
+                    //configuration.AddInputStream(userStream);
                     configuration.AddAssembly(Assembly.GetCallingAssembly());
                     sessionFactory = configuration.BuildSessionFactory();
                 }

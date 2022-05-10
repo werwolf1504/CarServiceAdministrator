@@ -46,9 +46,9 @@ namespace CarServiceAdministrator.Windows
                 session.Save(login);
                 
                 List<Login> loginList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Login))).List<Login>().ToList();
-                int loginNewID = loginList.First(x=>x.UserName == login.UserName && x.Password == login.Password).ID;
+                login.ID = loginList.First(x=>x.UserName == login.UserName && x.Password == login.Password).ID;
 
-                Users userNew = new Users() { LoginID = loginNewID, FirstName = FirstNameTextBox.Text, LastName = LastNameTextBox.Text, Email = EmailTextBox.Text, Phone = PhoneTextBox.Text };
+                Users userNew = new Users() { LoginID = login.ID, FirstName = FirstNameTextBox.Text, LastName = LastNameTextBox.Text, Email = EmailTextBox.Text, Phone = PhoneTextBox.Text };
                 session.Save(userNew);
 
                 //if (usersList.Count == 0)
