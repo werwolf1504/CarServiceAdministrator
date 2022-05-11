@@ -137,7 +137,10 @@ namespace CarServiceAdministrator.Windows
             {
                 Product product = new Product();
                 product.ProductNo = PartNumberTextBlock.Text;
-                product.Quantity = int.Parse(QuantityTextBlock.Text);
+                if(int.TryParse(QuantityTextBlock.Text, out int quantity))
+                    product.Quantity = quantity;
+                else
+                    product.Quantity = 0;
                 product.Description = DescriptionTextBlock.Text;
 
                 session.Save(product);
