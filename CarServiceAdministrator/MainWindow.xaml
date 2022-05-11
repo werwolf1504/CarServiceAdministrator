@@ -25,7 +25,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" FontFamily="Baskerville, Georgia" FontSize="18" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">User Name</Label>
             <TextBlock x:Name="ErrorTextBlock" Grid.Row="0" Grid.Column="2" FontFamily="Baskerville, Georgia" FontSize="13" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">User Name or Password <LineBreak/> are incorrect</TextBlock>
-            <TextBox x:Name="UserNameBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" FontSize="18">User Name</TextBox>
+            <TextBox x:Name="UserNameBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" FontSize="18"></TextBox>
             <Label Grid.Row="1" Grid.Column="0" FontFamily="Baskerville, Georgia" FontSize="18" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Password</Label>
             <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" FontSize="18"></PasswordBox>
             <Button x:Name="LoginButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.FontSize="18" Width="90" Click="LoginButton_Click">Login</Button>
