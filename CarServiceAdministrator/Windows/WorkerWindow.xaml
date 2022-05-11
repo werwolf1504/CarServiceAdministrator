@@ -81,6 +81,41 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+            <TabItem Header="Clients"  FontFamily="Baskerville, Georgia" FontSize="16" Height="20" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Car</Label>
+                    <TextBox x:Name="CarTextBlock" Grid.Row="0" Grid.Column="1" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+                    <Label Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Car Type</Label>
+                    <TextBox x:Name="CarTypeTextBlock" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">WIN Number</Label>
+                    <TextBox x:Name="WinNoTextBlock" Grid.Row="1" Grid.Column="1" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+                    <Label Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20">Table Number</Label>
+                    <TextBox x:Name="TableNoTextBlock" Grid.Row="1" Grid.Column="3" FontFamily="Baskerville, Georgia" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180"/>
+                    <Button x:Name="RefreshClientButton" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="RefreshClientButton_Click" Grid.ColumnSpan="2" Margin="17,0,0,0">Refresh</Button>
+                    <Button x:Name="AddClientButton" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="AddClientButton_Click">Add Client</Button>
+                    <Button x:Name="DeleteClientButton" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Baskerville, Georgia" FontSize="20" Width="220" Click="DeleteClientButton_Click">Delete Client</Button>
+                    <DataGrid x:Name="ClientDataGrid" Grid.Row="3" Grid.ColumnSpan="5" IsReadOnly="False" ItemsSource="{Binding Path=clientsList}" SelectionMode="Single" FontSize="16" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" Margin="0,0,0,48" SelectionChanged="ClientDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path= Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Surname" Binding="{Binding Path= Surname}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding Path= Phone}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Path= Email}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

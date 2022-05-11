@@ -25,8 +25,10 @@ namespace CarServiceAdministrator.Windows
         Login login;
         Users users;
         Product currentProduct;
+        Client currentClient;
         List<Users> usersList;
         List<Product> productsList;
+        List<Client> clientsList;
 
         public WorkerWindow(Login login)
         {
@@ -44,6 +46,9 @@ namespace CarServiceAdministrator.Windows
                 query = "select * from Product";
                 productsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Product))).List<Product>().ToList();
 
+                query = "select * from Client";
+                clientsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Client))).List<Client>().ToList();
+
                 //if (usersList.Count == 0)
                 //    MessageBox.Show("Do not found any Product");
 
@@ -51,6 +56,7 @@ namespace CarServiceAdministrator.Windows
                 Users currentUser = usersList.First(x=>x.LoginID == login.ID);
                 UserDataGrid.ItemsSource = usersList.Where(x => x.ID != currentUser.ID);
                 ProductDataGrid.ItemsSource = productsList;
+                ClientDataGrid.ItemsSource = clientsList;
                 NameTextBlock.Text = currentUser.FirstName;
                 LastNameTextBlock.Text = currentUser.LastName;
                 EmailTextBlock.Text = currentUser.Email;
@@ -159,6 +165,60 @@ namespace CarServiceAdministrator.Windows
                     string query = "select * from Product";
                     productsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Product))).List<Product>().ToList();
                     ProductDataGrid.ItemsSource = productsList;
+                }
+            }
+        }
+
+        private void RefreshClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var session = NHibernateSessionFactory.OpenSession())
+            {
+                string query = "select * from Client";
+                clientsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Client))).List<Client>().ToList();
+
+                ClientDataGrid.ItemsSource = clientsList;
+            }
+        }
+
+        private void AddClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientWindow clientWindow = new ClientWindow();
+            clientWindow.Show();
+        }
+
+        private void ClientDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentClient = ClientDataGrid.SelectedItem as Client;
+            if (currentClient != null)
+            {
+                CarTextBlock.Text = currentClient.Car;
+                CarTypeTextBlock.Text = currentClient.CarType;
+                WinNoTextBlock.Text = currentClient.WinNo;
+                TableNoTextBlock.Text = currentClient.TableNo;
+            }
+            else
+            {
+                CarTextBlock.Text = "";
+                CarTypeTextBlock.Text = "";
+                WinNoTextBlock.Text = "";
+                TableNoTextBlock.Text = "";
+            }
+        }
+
+        private void DeleteClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var session = NHibernateSessionFactory.OpenSession())
+            {
+                if (currentClient != null)
+                {
+                    var deleteClient = session.Get<Client>(currentClient.ID);
+                    session.Delete(deleteClient);
+                    session.Flush();
+
+                    string query = "select * from Client";
+                    clientsList = session.CreateSQLQuery(query).SetResultTransformer(new AliasToBeanResultTransformer(typeof(Client))).List<Client>().ToList();
+
+                    ClientDataGrid.ItemsSource = clientsList;
                 }
             }
         }
