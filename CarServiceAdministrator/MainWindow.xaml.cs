@@ -41,6 +41,7 @@ namespace CarServiceAdministrator
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)

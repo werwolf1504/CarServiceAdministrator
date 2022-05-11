@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWidnow" Height="280" Width="420">
     <Grid Name="LoginMainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="190"></RowDefinition>
