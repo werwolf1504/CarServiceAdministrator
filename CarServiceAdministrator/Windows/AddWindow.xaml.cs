@@ -22,6 +22,7 @@ namespace CarServiceAdministrator.Windows
     /// </summary>
     public partial class AddWindow : Window
     {
+        public bool Refresh  = false;
         public AddWindow()
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace CarServiceAdministrator.Windows
 
                 Users userNew = new Users() { LoginID = login.ID, FirstName = FirstNameTextBox.Text, LastName = LastNameTextBox.Text, Email = EmailTextBox.Text, Phone = PhoneTextBox.Text };
                 session.Save(userNew);
-
+                Refresh = true;
                 Close();
                 //if (usersList.Count == 0)
                 //    MessageBox.Show("Do not found any logins");

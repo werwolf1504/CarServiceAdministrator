@@ -68,8 +68,7 @@ namespace CarServiceAdministrator.Windows
         {
             InitializeComponent();
         }
-
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        public void Refersh()
         {
             usersList = new List<Users>();
             using (var session = NHibernateSessionFactory.OpenSession())
@@ -81,12 +80,15 @@ namespace CarServiceAdministrator.Windows
                     MessageBox.Show("Do not found any logins");
                 UserDataGrid.ItemsSource = usersList;
             }
+
         }
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
             AddWindow addWindow = new AddWindow();
-            addWindow.Show();
+            addWindow.ShowDialog();
+            if (addWindow.Refresh)
+                Refersh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
