@@ -225,5 +225,15 @@ namespace CarServiceAdministrator.Windows
                 }
             }
         }
+
+        private void ReportProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(@"File created: d:\files\Studia\diplom\Resourses\20220512_PRODUCTS.pdf");
+        }
+
+        private void ReportClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(@"File created: d:\files\Studia\diplom\Resourses\20220512_CLIENTS.pdf");
+        }
     }
 }
